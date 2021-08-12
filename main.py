@@ -132,8 +132,7 @@ if __name__ == '__main__':
         log_path = os.path.join(results_dest, 'log_results.log')
         if os.path.exists(log_path):
             os.remove(log_path)
-        logging.basicConfig(filename=log_path, level=logging.DEBUG)
-
+        logging.basicConfig(filename=log_path, level=logging.DEBUG, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 
         net.teach(
             utkface_path=data_src,

@@ -4,15 +4,18 @@ cycler==0.10.0
 decorator==5.0.6
 imageio==2.9.0
 ipykernel==5.5.3
-ipython==7.22.0
+# ipython==7.22.0
+ipython==7.16.1
 ipython-genutils==0.2.0
 jedi==0.18.0
 joblib==1.0.1
 jupyter-client==6.1.12
 jupyter-core==4.7.1
 kiwisolver==1.3.1
-matplotlib==3.4.1
-numpy==1.20.2
+# matplotlib==3.4.1
+matplotlib==3.3.4
+# numpy==1.20.2
+numpy==1.19.5
 opencv-python==4.5.1.48
 parso==0.8.2
 pickleshare==0.7.5
@@ -24,7 +27,8 @@ python-dateutil==2.8.1
 # pywin32==300
 pyzmq==22.0.3
 scikit-learn==0.22.2.post1
-scipy==1.6.2
+# scipy==1.6.2
+scipy==1.5.4
 six==1.15.0
 threadpoolctl==2.1.0
 # torch==0.4.1
@@ -33,6 +37,7 @@ torch==1.4.0
 torchvision==0.5.0
 tornado==6.1
 tqdm==4.19.9
-traitlets==5.0.5
+# traitlets==5.0.5
+traitlets==4.3.3
 typing-extensions==3.7.4.3
 wcwidth==0.2.5

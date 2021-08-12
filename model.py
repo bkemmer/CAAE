@@ -254,7 +254,7 @@ class Net(object):
 
         generated = self.G(z_vectors)
         dest = os.path.join(target, 'morph.png')
-        save_image_normalized(tensor=generated, filename=dest, nrow=generated.size(0))
+        save_image_normalized(tensor=generated, fp=dest, nrow=generated.size(0))
         print_timestamp("Saved test result to " + dest)
         return dest
 
@@ -367,7 +367,8 @@ class Net(object):
             models_saving='always',
     ):
 
-        path = "/home/bkemmer/projects/CAAE/"
+        path = "/tf/CAAE/"
+
         import os
         os.chdir(path)
         where_to_save = where_to_save or default_where_to_save()
@@ -378,7 +379,7 @@ class Net(object):
         
         #train_size = ((len(dataset)//batch_size) - 1)*64
         #valid_size = valid_size or len(dataset)-train_size
-        train_size = int(len(dataset)*0.95)
+        train_size = int(len(dataset)*0.9)
         valid_size = len(dataset)-train_size
 
 
@@ -413,10 +414,10 @@ class Net(object):
             where_to_save_epoch = os.path.join(where_to_save, "epoch" + str(epoch))
             
             try:
-                if epoch % 5 ==0 or epoch == epochs:
-                    if not os.path.exists(where_to_save_epoch):
-                        print('criou diretorio where_to_save_epoch: ', where_to_save_epoch)
-                        os.makedirs(where_to_save_epoch)
+                # if epoch % 5 ==0 or epoch == epochs:
+                if not os.path.exists(where_to_save_epoch):
+                    print('criou diretorio where_to_save_epoch: ', where_to_save_epoch)
+                    os.makedirs(where_to_save_epoch)
                 paths_for_gif.append(where_to_save_epoch)
                 losses = defaultdict(lambda: [])
                 self.train()  # move to train mode
@@ -506,8 +507,8 @@ class Net(object):
                     prev_folder = os.path.join(where_to_save, "epoch" + str(epoch - 1))
                     remove_trained(prev_folder)
 
-                if epoch % 5 ==0 or epoch == epochs:
-                    loss_tracker.save(os.path.join(cp_path, 'losses.png'))
+                # if epoch % 5 ==0 or epoch == epochs:
+                loss_tracker.save(os.path.join(cp_path, 'losses.png'))
 
                 with torch.no_grad():  # validation
                     self.eval()  # move to eval mode
@@ -527,9 +528,9 @@ class Net(object):
                         joined = merge_images(images, generated)  # torch.cat((generated, images), 0)
 
                         file_name = os.path.join(where_to_save_epoch, 'validation.png')
-                        if epoch % 5 ==0 or epoch == epochs:
-                            print('*** Epoch: ', epoch, ' - salva imagem: ', file_name)
-                            save_image_normalized(tensor=joined, filename=file_name, nrow=nrow)
+                        # if epoch % 5 ==0 or epoch == epochs:
+                        print('*** Epoch: ', epoch, ' - salva imagem: ', file_name)
+                        save_image_normalized(tensor=joined, fp=file_name, nrow=nrow)
 
                         losses['valid'].append(loss.item())
                         break
